@@ -1,143 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Special Bailey</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            background: #ffe6f2;
-            color: #ff4d79;
-            overflow: hidden;
-            transition: background 0.5s ease;
-        }
-        h1 {
-            font-size: 2.5rem;
-        }
-        .heart-button, .warmth-button, .magic-button, .music-button, .lego-button, .galaxy-button, .coloring-button {
-            background: #ff4d79;
-            color: white;
-            border: none;
-            padding: 15px 25px;
-            font-size: 1.2rem;
-            border-radius: 30px;
-            cursor: pointer;
-            margin: 10px;
-        }
-        .heart-button:hover, .warmth-button:hover, .magic-button:hover, .music-button:hover, .lego-button:hover, .galaxy-button:hover, .coloring-button:hover {
-            background: #e6005c;
-        }
-        .compliment {
-            font-size: 1.5rem;
-            margin-top: 20px;
-        }
-        .hearts {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-        @keyframes fall {
-            from { transform: translateY(-10vh); }
-            to { transform: translateY(100vh); }
-        }
-        .heart {
-            position: absolute;
-            font-size: 24px;
-            animation: fall 5s linear infinite;
-        }
-        #hidden-message, #extra-hidden-message, #magic-message, #galaxy-message, #lego-message, #secret-message {
-            display: none;
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-top: 30px;
-            color: #ff1a66;
-        }
-        .magic-button {
-            display: none;
-            background: gold;
-            color: black;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Special Bailey</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #ffe6f2;
+      color: #ff4d79;
+      overflow: hidden;
+      transition: background 0.5s ease;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+    .heart-button, .warmth-button, .magic-button, .music-button, .lego-button, .galaxy-button, .coloring-button {
+      background: #ff4d79;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    .heart-button:hover, .warmth-button:hover, .magic-button:hover, .music-button:hover, .lego-button:hover, .galaxy-button:hover, .coloring-button:hover {
+      background: #e6005c;
+    }
+    .compliment {
+      font-size: 1.5rem;
+      margin-top: 20px;
+    }
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      from { transform: translateY(-10vh); }
+      to { transform: translateY(100vh); }
+    }
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: fall 5s linear infinite;
+    }
+    #hidden-message, #extra-hidden-message, #magic-message, #galaxy-message, #lego-message, #secret-message, #eye-message {
+      display: none;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-top: 30px;
+      color: #ff1a66;
+    }
+    .magic-button {
+      display: none;
+      background: gold;
+      color: black;
+    }
+  </style>
 </head>
 <body>
-    <audio id="background-music" loop>
-        <source src="https://soundcloud.com/marma1/the-beatles-i-will" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    
-    <h1>For My Special Bailey 💖</h1>
-    <p>Click below to reveal something from my heart to yours.</p>
-    
-    <button class="heart-button" onclick="showMessage()">💖 Click Me 💖</button>
-    <p class="compliment" id="message"></p>
-    <p id="hidden-message">You’ve unlocked my heart completely... You are my greatest joy, my brightest light, and the person I never want to stop cherishing. 💖</p>
-    <p id="extra-hidden-message">Like the warmth of a cozy hobbit hole in the Shire, you are my comfort and my adventure all at once. 🍃</p>
-    
-    <button class="warmth-button" onmousedown="changeBackground(true)" onmouseup="changeBackground(false)">☀️ Hold to Feel the Warmth ☀️</button>
-    
-    <button class="magic-button" id="magic-btn" onclick="showMagicMessage()">✨ Magic Whisper ✨</button>
-    <p id="magic-message">Even in a galaxy far, far away, you would still be the only star that matters. 🌌</p>
-    
-    <button class="music-button" onclick="toggleMusic()">🎵 Toggle Music 🎵</button>
-    
-    <button class="galaxy-button" onclick="showGalaxyMessage()">🌟 Star Wars Surprise 🌟</button>
-    <p id="galaxy-message">You're my guiding star, my Leia to my Han, my greatest adventure through the stars. 🚀 <span style="color: #fff; text-shadow: 0px 0px 10px blue;">*Lightsaber Glow*</span></p>
-    
-    <button class="lego-button" onclick="showLegoMessage()">🧱 LEGO Easter Egg 🧱</button>
-    <p id="lego-message">Brick by brick, you’ve built something irreplaceable in my heart. 💕</p>
-    
-    <button class="coloring-button" onclick="goToColoringPage()">🎨 Coloring Book 🎨</button>
-    
-    <p id="secret-message">In a vast cosmos of stars, I have searched endlessly for the one that shines the brightest, and now I know—it's you. You are my guiding light, my most treasured star. My heart knows that you are the one, the person I have dreamed of finding, and I would do anything to keep that light shining in my life forever. You are, without a doubt, the kind of person I could see myself sharing forever with. 💍💖</p>
-    
-    <p id="eye-message">Your eyes are like twin supernovas, capturing me in their orbit, and your voice—it's the most beautiful melody I never want to stop hearing. 🎶</p>
-    
-    <div class="hearts" id="hearts"></div>
-    
-    <script>
-        let clickCount = 0;
-        let music = document.getElementById("background-music");
-        music.volume = 0.3;
+  <audio id="background-music" loop>
+    <source src="https://soundcloud.com/marma1/the-beatles-i-will" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-        function showMessage() {
-            const messages = [
-                "You light up my world like no one else.",
-                "Every moment with you feels like a dream.",
-                "You are the reason my heart beats a little faster.",
-                "I am endlessly grateful for you.",
-                "My world is brighter because you're in it."
-            ];
-            document.getElementById("message").innerText = messages[Math.floor(Math.random() * messages.length)];
-            clickCount++;
-            
-            if (clickCount >= 5) {
-                document.getElementById("hidden-message").style.display = "block";
-            }
-            if (clickCount >= 10) {
-                document.getElementById("magic-btn").style.display = "inline-block";
-            }
-            if (clickCount >= 15) {
-                document.getElementById("secret-message").style.display = "block";
-                document.getElementById("eye-message").style.display = "block";
-            }
-        }
-
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-            } else {
-                music.pause();
-            }
-        }
-
-        function changeBackground(isHolding) {
-            document.body.style.background = isHolding ? "#ffcccb" : "#ffe6f2";
-        }
-    </script>
-</body>
-</html>
+  <h1>For My Special Bailey 💖</h1>
+  <p>Click below to reveal something from my heart to yours.</p>
+  
+  <button class="heart-button" onclick="showMessage()">💖 Click Me 💖</button>
+  <p class="compliment" id="message"></p>
+  <p id="hidden-message">You’ve unlocked my heart completely... You are my greatest joy, my brightest light, and the person I never want to stop cherishing. 💖</p>
+  <p id="extra-hidden-message">Like the warmth of a cozy hobbit hole in the Shire, you are my comfort and my adventure all at once. 🍃</p>
+  
+  <button class="warmth-button" onmousedown="changeBackground(true)" onmouseup="changeBackground(false)">☀️ Hold to Feel the Warmth ☀️</button>
+  
+  <button class="magic-button" id="magic-btn" onclick="showMagicMessage()">✨ Magic Whisper ✨</button>
+  <p id="magic-message">Even in a galaxy far, far away, you would still be the only star that matters. 🌌</p>
+  
+  <button class="music-button" onclick="toggleMusic()">🎵 Toggle Music 🎵</button>
+  
+  <button class="galaxy-button" onclick="showGalaxyMessage()">🌟 Star Wars Surprise 🌟</button>
+  <p id="galaxy-message">You're my guiding star, my Leia to my Han, my greatest adventure through the stars. 🚀 <span style="color: #fff; text-shadow: 0px 0px 10px blue;">*Lightsaber Glow*</span></p>
+  
+  <button class="lego-button" onclick="showLegoMessage()">🧱 LEGO Easter Egg 🧱</button>
+  <p id="lego-mes
