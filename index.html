@@ -66,7 +66,7 @@
 </head>
 <body>
     <audio id="background-music" loop>
-        <source src="your-music-file.mp3" type="audio/mpeg">
+        <source src="https://soundcloud.com/marma1/the-beatles-i-will" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     
@@ -78,7 +78,7 @@
     <p id="hidden-message">You’ve unlocked my heart completely... You are my greatest joy, my brightest light, and the person I never want to stop cherishing. 💖</p>
     <p id="extra-hidden-message">Like the warmth of a cozy hobbit hole in the Shire, you are my comfort and my adventure all at once. 🍃</p>
     
-    <button class="warmth-button" onmousedown="changeBackground()" onmouseup="resetBackground()">☀️ Hold to Feel the Warmth ☀️</button>
+    <button class="warmth-button" onmousedown="changeBackground(true)" onmouseup="changeBackground(false)">☀️ Hold to Feel the Warmth ☀️</button>
     
     <button class="magic-button" id="magic-btn" onclick="showMagicMessage()">✨ Magic Whisper ✨</button>
     <p id="magic-message">Even in a galaxy far, far away, you would still be the only star that matters. 🌌</p>
@@ -133,6 +133,10 @@
             } else {
                 music.pause();
             }
+        }
+
+        function changeBackground(isHolding) {
+            document.body.style.background = isHolding ? "#ffcccb" : "#ffe6f2";
         }
     </script>
 </body>
