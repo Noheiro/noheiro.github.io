@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Special Someone</title>
+    <title>For My Special Bailey</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -16,7 +16,7 @@
         h1 {
             font-size: 2.5rem;
         }
-        .heart-button, .warmth-button, .magic-button, .music-button, .lego-button, .galaxy-button, .coloring-button {
+        .heart-button, .warmth-button, .magic-button, .music-button, .coloring-button {
             background: #ff4d79;
             color: white;
             border: none;
@@ -26,7 +26,7 @@
             cursor: pointer;
             margin: 10px;
         }
-        .heart-button:hover, .warmth-button:hover, .magic-button:hover, .music-button:hover, .lego-button:hover, .galaxy-button:hover, .coloring-button:hover {
+        .heart-button:hover, .warmth-button:hover, .magic-button:hover, .music-button:hover, .coloring-button:hover {
             background: #e6005c;
         }
         .compliment {
@@ -50,7 +50,7 @@
             font-size: 24px;
             animation: fall 5s linear infinite;
         }
-        #hidden-message, #extra-hidden-message, #magic-message, #galaxy-message, #lego-message, #secret-message {
+        #hidden-message, #extra-hidden-message, #magic-message, #secret-message {
             display: none;
             font-size: 1.8rem;
             font-weight: bold;
@@ -70,7 +70,7 @@
         Your browser does not support the audio element.
     </audio>
     
-    <h1>For My Special Someone 💖</h1>
+    <h1>For My Special Bailey 💖</h1>
     <p>Click below to reveal something from my heart to yours.</p>
     
     <button class="heart-button" onclick="showMessage()">💖 Click Me 💖</button>
@@ -80,16 +80,7 @@
     
     <button class="warmth-button" onmousedown="changeBackground(true)" onmouseup="changeBackground(false)">☀️ Hold to Feel the Warmth ☀️</button>
     
-    <button class="magic-button" id="magic-btn" onclick="showMagicMessage()">✨ Magic Whisper ✨</button>
-    <p id="magic-message">Even in a galaxy far, far away, you would still be the only star that matters. 🌌</p>
-    
     <button class="music-button" onclick="toggleMusic()">🎵 Toggle Music 🎵</button>
-    
-    <button class="galaxy-button" onclick="showGalaxyMessage()">🌟 Star Wars Surprise 🌟</button>
-    <p id="galaxy-message">You're my guiding star, my Leia to my Han, my greatest adventure through the stars. 🚀 <span style="color: #fff; text-shadow: 0px 0px 10px blue;">*Lightsaber Glow*</span></p>
-    
-    <button class="lego-button" onclick="showLegoMessage()">🧱 LEGO Easter Egg 🧱</button>
-    <p id="lego-message">Brick by brick, you’ve built something irreplaceable in my heart. 💕</p>
     
     <button class="coloring-button" onclick="window.location.href='coloring.html'">🎨 Coloring Book 🎨</button>
     
@@ -125,18 +116,6 @@
                 document.getElementById("secret-message").style.display = "block";
                 document.getElementById("eye-message").style.display = "block";
             }
-        }
-
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-            } else {
-                music.pause();
-            }
-        }
-
-        function changeBackground(isHolding) {
-            document.body.style.background = isHolding ? "#ffcccb" : "#ffe6f2";
         }
     </script>
 </body>
