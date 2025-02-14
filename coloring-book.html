@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coloring Book</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: #faf3e0;
+            color: #5d4037;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #d84315;
+        }
+        .canvas-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        canvas {
+            border: 2px solid #333;
+            cursor: crosshair;
+        }
+        .controls {
+            margin-top: 15px;
+        }
+        button, select, input {
+            font-size: 1rem;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button {
+            background: #ff7043;
+            color: white;
+        }
+        button:hover {
+            background: #d84315;
+        }
+        select {
+            background: #ffe0b2;
+        }
+        input[type="color"] {
+            width: 40px;
+            height: 40px;
+            border: none;
+            cursor: pointer;
+        }
+        .return-button {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .return-button:hover {
+            background: #388E3C;
+        }
+    </style>
+</head>
+<body>
+    <h1>Coloring Book 🎨</h1>
+    <p>Choose a theme and start coloring!</p>
+
+    <label for="theme">Pick a theme:</label>
+    <select id="theme" onchange="changeImage()">
+        <option value="lotr">Lord of the Rings (Legolas)</option>
+        <option value="starwars">Star Wars</option>
+        <option value="beatles">The Beatles</option>
+    </select>
+
+    <div class="canvas-container">
+        <canvas id="coloringCanvas" width="500" height="500"></canvas>
+        <div class="controls">
+            <input type="color" id="colorPicker">
+            <button onclick="clearCanvas()">Clear</button>
+            <button onclick="saveDrawing()">Save</button>
+        </div>
+    </div>
+
+    <a href="index.html" class="return-button">Back to Main Page</a>
+
+    <script>
+        let canvas = document.getElementById("coloringCanvas");
+        let ctx = canvas.getContext("2d");
+        let painting = false;
+        let colorPicker = document.getElementById("colorPicker");
+        let currentImage = new Image();
+
+        function startPosition(e) {
+            painting = true;
+            draw(e);
+        }
+
+        function endPosition() {
+            painting = false;
+            ctx.beginPath();
+        }
+
+        function draw(e) {
+            if (!painting) return;
+            ctx.lineWidth = 5;
+            ctx.lineCap = "round";
+            ctx.strokeStyle = colorPicker.value;
+
+            ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        }
+
+        canvas.addEventListener("mousedown", startPosition);
+        canvas.addEventListener("mouseup", endPosition);
+        canvas.addEventListener("mousemove", draw);
+
+        function changeImage() {
+            let theme = document.getElementById("theme").value;
+            currentImage.src = theme + ".png";
+            currentImage.onload = function () {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
+            };
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
+        }
+
+        function saveDrawing() {
+            let link = document.createElement("a");
+            link.download = "colored-art.png";
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        changeImage();
+    </script>
+</body>
+</html>
